@@ -24,4 +24,5 @@ runit_service 'ceilometer' do
   action [:enable, :start]
   default_logger true
   env(node[:ceilometer][:env].dup)
+  options(node[:ceilometer].dup)
 end

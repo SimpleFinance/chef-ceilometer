@@ -1,0 +1,8 @@
+#!/bin/bash
+
+exec chpst -e $PWD/env \
+     -u <%= @options[:user] %> \
+     <%= @options[:bin] %>/ceilometer \
+     | nc \
+          <%= @options[:env]['HOST'] %> \
+          <%= @options[:env]['TCP_PORT'] %>

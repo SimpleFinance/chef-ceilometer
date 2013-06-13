@@ -7,6 +7,15 @@ Vagrant.configure('2') do |config|
   config.omnibus.chef_version = :latest
 
   config.vm.provision :chef_solo do |chef|
+    chef.json = {
+      :ceilometer => {
+        :env => {
+          :AWS_ACCESS_KEY_ID => ENV['AWS_ACCESS_KEY_ID'],
+          :AWS_SECRET_ACCESS_KEY => ENV['AWS_SECRET_ACCESS_KEY'],
+          :HOST => ENV['HOST']
+        }
+      }
+    }
     chef.run_list = [
       'recipe[ceilometer::default]'
     ]

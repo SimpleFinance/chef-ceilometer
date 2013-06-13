@@ -1,5 +1,6 @@
 #!/bin/bash
 
+exec 2>&1
 exec chpst -e $PWD/env \
      -u <%= @options[:user] %> \
      <%= @options[:root] %>/current/bin/ceilometer \
